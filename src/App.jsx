@@ -8,7 +8,7 @@ function App() {
 
   // creating todo
   const createTodo = e => {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && Boolean(e.target.value.trim())) {
       const newTodo = {
         id: todos.length + 1,
         title: e.target.value.trim(),
@@ -47,7 +47,7 @@ function App() {
       <h1 className='h4 text-center'>Create your tasks</h1>
 
       <div className='form-group mt-2'>
-        <input className='form-control' onKeyUp={createTodo} placeholder='What needs to be done?' />
+        <input className='form-control' onKeyUp={createTodo} placeholder='What needs to be done?' required />
       </div>
 
       <ul className='list list-group'>
