@@ -45,9 +45,11 @@ function App() {
   return (
     <div className="container">
       <h1 className='h4 text-center'>Create your tasks</h1>
+
       <div className='form-group mt-2'>
         <input className='form-control' onKeyUp={createTodo} placeholder='What needs to be done?' />
       </div>
+
       <ul className='list list-group'>
         {todos.map(todo => {
           return (
@@ -55,6 +57,7 @@ function App() {
               <span className={changeClass(todo)}>{todo.title}</span>
               <div>
                 <button className={todo.completed === true ? 'btn btn-sm mr-2 btn-warning text-white' : 'btn btn-success btn-sm mr-2'} onClick={completeTodo.bind(null, todo)}>{todo.completed === true ? 'Undone' : 'Done'}</button>
+
                 <button className="btn btn-danger btn-sm" onClick={deleteTodo.bind(null, todo)}>X</button>
               </div>
             </li>
