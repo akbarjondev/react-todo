@@ -24,12 +24,13 @@ function App() {
   // deleting todo
   const deleteTodo = (todo) => setTodos(todos.filter(t => t.id !== todo.id));
 
-  //complete todo
-  const completeTodo = (clickedTodo) => {
+  // modifying todo, complete todo
+  const completeTodo = ({ id }) => {
     let updatedTodos = todos.map(todo => {
-      if (todo.id === clickedTodo.id) {
-        todo.completed = true;
+      if (todo.id === id) {
+        todo.completed ? todo.completed = false : todo.completed = true;
       }
+
       return todo;
     });
 
@@ -38,7 +39,7 @@ function App() {
 
   // change class
   const changeClass = ({ completed }) => {
-    return completed === true && 'done-todo'
+    return completed === true ? 'done-todo' : '';
   }
 
   return (
@@ -53,7 +54,7 @@ function App() {
             <li key={todo.id} className="d-flex justify-content-between align-items-center list-group-item list-group-item-action">
               <span className={changeClass(todo)}>{todo.title}</span>
               <div>
-                <button className="btn btn-success btn-sm mr-2" onClick={completeTodo.bind(null, todo)}>Done</button>
+                <button className={todo.completed === true ? 'btn btn-sm mr-2 btn-warning text-white' : 'btn btn-success btn-sm mr-2'} onClick={completeTodo.bind(null, todo)}>{todo.completed === true ? 'Undone' : 'Done'}</button>
                 <button className="btn btn-danger btn-sm" onClick={deleteTodo.bind(null, todo)}>X</button>
               </div>
             </li>
